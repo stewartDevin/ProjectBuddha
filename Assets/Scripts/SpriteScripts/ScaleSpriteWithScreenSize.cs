@@ -8,9 +8,9 @@ public class ScaleSpriteWithScreenSize : MonoBehaviour
     SpriteRenderer sr;
     public bool keepAspect = false;
     public bool fullscreen = true;
-    [Range(0.0f, 1.0f)]
+    [Range(0.00001f, 1.0f)]
     public float width = 0.1f;
-    [Range(0.0f, 1.0f)]
+    [Range(0.00001f, 1.0f)]
     public float height = 0.1f;
 
     // Use this for initialization
@@ -22,19 +22,15 @@ public class ScaleSpriteWithScreenSize : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         float worldScreenHeight = Camera.main.orthographicSize * 2;
         float worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
         //Debug.Log("height: " + worldScreenHeight + ", " + "width: " + worldScreenWidth);
 
         if (fullscreen)
         {
-
             transform.localScale = new Vector3(
             worldScreenWidth / sr.sprite.bounds.size.x,
             worldScreenHeight / sr.sprite.bounds.size.y, 1);
-
-
         }
         else
         {
