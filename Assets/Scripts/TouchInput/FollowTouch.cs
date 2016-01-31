@@ -3,7 +3,7 @@ using System.Collections;
 
 public class FollowTouch : MonoBehaviour {
 
-    public float distance = 10;
+    public float distance = 5;
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +14,7 @@ public class FollowTouch : MonoBehaviour {
     void Update()
     {
         Touch myTouch = Input.GetTouch(0);
-        Vector3 touchPos = new Vector3(myTouch.position.x, myTouch.position.y, 1);
+        Vector3 touchPos = new Vector3(myTouch.position.x, myTouch.position.y, 0);
         Ray ray = Camera.main.ScreenPointToRay(touchPos);
         Vector3 newPos = ray.GetPoint(distance);
 
