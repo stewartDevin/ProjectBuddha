@@ -16,8 +16,7 @@ public class CollisionDetection : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other) {
         if(other.tag == "Touch")
         {
-            Debug.Log("got here");
-            gameObject.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+            Destroy(gameObject);           
         }
             
     }
