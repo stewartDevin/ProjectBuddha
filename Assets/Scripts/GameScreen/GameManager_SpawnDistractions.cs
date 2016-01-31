@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameManager_SpawnDistractions : MonoBehaviour {
 
-    bool runSpawner = true;
+    public bool runSpawner = true;
 
     float spawnTimer = 3.0f;
 

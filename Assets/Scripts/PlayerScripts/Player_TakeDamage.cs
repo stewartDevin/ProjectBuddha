@@ -10,7 +10,8 @@ public class Player_TakeDamage : MonoBehaviour
         if(other.tag == "DistractionTrigger")
         {
             Debug.Log("boom");
-            //playerStatsScript.health--;
+            playerStatsScript.health--;
+            Debug.Log(playerStatsScript.health);
             Destroy(other.transform.parent.gameObject);
         }
     }
