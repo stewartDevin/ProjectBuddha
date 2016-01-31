@@ -11,6 +11,7 @@ public class Distraction_Noise : MonoBehaviour {
     void Start () {
         distractionStatsScript = GetComponent<Distraction_Stats>();
         distractionStatsScript.distractionType = Distraction_Stats.DistractionType.Noise;
+        distractionStatsScript.moveSpeed = 2.0f;
         Debug.Log("noise incoming");
 
         playerGO = GameObject.Find("Player");

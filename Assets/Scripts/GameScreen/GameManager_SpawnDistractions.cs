@@ -37,7 +37,7 @@ public class GameManager_SpawnDistractions : MonoBehaviour {
             float worldScreenHeight = Camera.main.orthographicSize * 2;
             float worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
 
-            int randSide = Random.Range(0, 4);
+            int randSide = Random.Range(1, 4);
 
             if (randSide == 1)
             {
@@ -68,6 +68,12 @@ public class GameManager_SpawnDistractions : MonoBehaviour {
             //Debug.Log(randY);
 
             //float randX = Random.Range();
+
+            if(spawnPosition == Vector3.zero)
+            {
+                Debug.Log("spawn position is zero");
+                return;
+            }
 
             GameObject distraction = (GameObject)Instantiate(distractionPrefab, spawnPosition, Quaternion.identity);
             distraction.name = "Distraction" + distractionCount;
