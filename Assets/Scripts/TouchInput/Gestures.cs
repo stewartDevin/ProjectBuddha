@@ -7,9 +7,34 @@ public class Gestures : MonoBehaviour {
     public float minSwipeDist = 100;
     private Vector2 startPos;
 
+    //Swivel
+    private Vector2 pos1;
+    private Vector2 pos2;
+    private Vector2 pos3;
+    private Vector2 vectorDir;
+
+
     // Use this for initialization
     void Start () {
-        
+        if (Input.touchCount > 0) {
+            Touch playerTouch = Input.GetTouch(0);
+
+            switch (playerTouch.phase) {
+                case TouchPhase.Began:
+                    pos1 = playerTouch.position;
+                    break;
+                case TouchPhase.Moved:
+                    pos2 = playerTouch.position;
+                    vectorDir = pos2 - pos1;
+
+                    if (vectorDir.x > 0 && playerTouch.deltaPosition.x < 0 || vectorDir.x < 0 && playerTouch.deltaPosition.x > 0 ||
+                        vectorDir.y > 0 && playerTouch.deltaPosition.y < 0 || vectorDir.y < 0 && playerTouch.deltaPosition.y > 0)
+                    {
+                        //then a change in the direction of the touch has changed
+                    }
+                    break;
+            }
+        }
     }
 	
 	// Update is called once per frame
