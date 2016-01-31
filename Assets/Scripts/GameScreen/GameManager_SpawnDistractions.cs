@@ -64,7 +64,7 @@ public class GameManager_SpawnDistractions : MonoBehaviour {
             }
 
 
-            Debug.Log("height " + worldScreenHeight + ", " + "width " + worldScreenWidth);
+            //Debug.Log("height " + worldScreenHeight + ", " + "width " + worldScreenWidth);
             //Debug.Log(randY);
 
             //float randX = Random.Range();
