@@ -7,7 +7,7 @@ public class GameManager_SpawnDistractions : MonoBehaviour {
 
     float spawnTimer = 3.0f;
 
-    float spawnRate = 2.0f;
+    float spawnRate = 1.0f;
 
     Vector3 spawnPosition = Vector3.zero;
 
@@ -26,7 +26,7 @@ public class GameManager_SpawnDistractions : MonoBehaviour {
 
         spawnRate -= 0.01f * Time.deltaTime;
 
-        spawnRate = Mathf.Clamp(spawnRate, 1f, 50.0f);
+        spawnRate = Mathf.Clamp(spawnRate, 0.4f, 50.0f);
 
         spawnTimer += 1.0f * Time.deltaTime;
         if(spawnTimer >= spawnRate)

@@ -25,7 +25,7 @@ public class FollowTouch : MonoBehaviour
         {
             EnableCollision();
             Touch myTouch = Input.GetTouch(0);
-            if(myTouch.deltaPosition.x < 5 || myTouch.deltaPosition.y < 5) {
+            if( Mathf.Abs(myTouch.deltaPosition.x) < 1.5f || Mathf.Abs(myTouch.deltaPosition.y) < 1.5f) {
                 DisableCollision();        
             } else {
                 EnableCollision();
@@ -58,7 +58,28 @@ public class FollowTouch : MonoBehaviour
             gameObject.transform.position = newPos;
         }
 #endif
+
+
+#if UNITY_STANDALONE_WIN
+        if (Input.GetMouseButtonUp(0))
+        {
+            DisableCollision();
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            EnableCollision();
+            Vector3 touchPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+            Ray ray = Camera.main.ScreenPointToRay(touchPos);
+            Vector3 newPos = ray.GetPoint(distance);
+
+            gameObject.transform.position = newPos;
+        }
+#endif
+    
     }
+
+    
 
     void DisableCollision()
     {

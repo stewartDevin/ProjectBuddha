@@ -11,6 +11,7 @@ public class Distraction_Projectile : MonoBehaviour {
     {
         distractionStatsScript = GetComponent<Distraction_Stats>();
         distractionStatsScript.distractionType = Distraction_Stats.DistractionType.Projectile;
+        distractionStatsScript.moveSpeed = 2.0f;
         Debug.Log("projectile incoming");
 
         playerGO = GameObject.Find("Player");

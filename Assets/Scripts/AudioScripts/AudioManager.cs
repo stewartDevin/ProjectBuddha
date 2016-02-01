@@ -47,7 +47,6 @@ public class AudioManager : MonoBehaviour {
         efxSource.Play();
     }
 
-
     //RandomizeSfx chooses randomly between various audio clips and slightly changes their pitch.
     public void RandomizeSfx(params AudioClip[] clips)
     {

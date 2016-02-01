@@ -11,6 +11,7 @@ public class Distraction_Smell : MonoBehaviour {
     {
         distractionStatsScript = GetComponent<Distraction_Stats>();
         distractionStatsScript.distractionType = Distraction_Stats.DistractionType.Smell;
+        distractionStatsScript.moveSpeed = 1.5f;
         Debug.Log("smell incoming");
 
         playerGO = GameObject.Find("Player");
