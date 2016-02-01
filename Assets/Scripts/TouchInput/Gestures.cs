@@ -21,7 +21,7 @@ public class Gestures : MonoBehaviour
     {
         worldScreenHeight = Camera.main.orthographicSize * 2;
         worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
-        minSwipeDist = worldScreenWidth / 2f;
+        minSwipeDist = Screen.width / 8f;
     }
 
     // Update is called once per frame
@@ -39,63 +39,42 @@ public class Gestures : MonoBehaviour
 
                     //if(playerTouch.position is within the trigger of a projectile distraction)
                     //destroy the sound distraction
+
+                    gameObject.tag = "Tap";
                     break;
                 case TouchPhase.Moved:
-                    ////SWIPE
-                    //float swipeDist = (playerTouch.position - startPos).magnitude;
+                    //SWIPE
+                    Vector2 swipeVector = playerTouch.position - startPos;
 
-                    //if (swipeDist > minSwipeDist)
+                    if (swipeVector.x > minSwipeDist || swipeVector.y > minSwipeDist)
+                    {
+                        //if (swipe enters distraction trigger && is a sound distraction)
+                        //Destroy the sound distraction
+                        gameObject.tag = "Swipe";
+                    }
+                    //END SWIPE
+
+                    ////SQUIGGLE
+                    //lastPos = currentPos - playerTouch.deltaPosition;
+                    //vectorDir = lastPos - currentPos;
+
+                    ////if (vectorDir is pointing to the right and the change in position is to the left)
+                    ////if ((vectorDir.x > 0 && playerTouch.deltaPosition.x < 0) || (vectorDir.x < 0 && playerTouch.deltaPosition.x > 0) ||
+                    ////    (vectorDir.y > 0 && playerTouch.deltaPosition.y < 0) || (vectorDir.y < 0 && playerTouch.deltaPosition.y > 0))
+                    //if (vectorDir.x > 0 && playerTouch.deltaPosition.x < 0)
                     //{
-                    //    //if (swipe enters distraction trigger && is a sound distraction)
-                    //    //Destroy the sound distraction
+                    //    //then a change in the direction of the touch has changed
                     //    gameObject.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
                     //}
-                    ////END SWIPE
-
-                    //SQUIGGLE
-                    lastPos = currentPos - playerTouch.deltaPosition;
-                    vectorDir = lastPos - currentPos;
-
-                    //if (vectorDir is pointing to the right and the change in position is to the left)
-                    //if ((vectorDir.x > 0 && playerTouch.deltaPosition.x < 0) || (vectorDir.x < 0 && playerTouch.deltaPosition.x > 0) ||
-                    //    (vectorDir.y > 0 && playerTouch.deltaPosition.y < 0) || (vectorDir.y < 0 && playerTouch.deltaPosition.y > 0))
-                    if (vectorDir.x > 0 && playerTouch.deltaPosition.x < 0)
-                    {
-                        //then a change in the direction of the touch has changed
-                        gameObject.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
-                    }
-                    else if (playerTouch.phase == TouchPhase.Ended) {
-                        return;
-                    }
-                    //END OF SQUIGGLE
+                    //else if (playerTouch.phase == TouchPhase.Ended) {
+                    //    return;
+                    //}
+                    ////END OF SQUIGGLE
 
                     break;
-            }
-
-        }
-
-        if (Input.touchCount > 0)
-        {
-            Touch playerTouch = Input.GetTouch(0);
-            currentPos = playerTouch.position;
-
-            if (playerTouch.phase == TouchPhase.Moved)
-            {
-                lastPos = currentPos - playerTouch.deltaPosition;
-                vectorDir = lastPos - currentPos;
-
-                //if (vectorDir is pointing to the right and the change in position is to the left)
-                //if ((vectorDir.x > 0 && playerTouch.deltaPosition.x < 0) || (vectorDir.x < 0 && playerTouch.deltaPosition.x > 0) ||
-                //    (vectorDir.y > 0 && playerTouch.deltaPosition.y < 0) || (vectorDir.y < 0 && playerTouch.deltaPosition.y > 0))
-                if (vectorDir.x > 0 && playerTouch.deltaPosition.x < 0)
-                {
-                    //then a change in the direction of the touch has changed
-                    gameObject.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
-                }
-            }
-            else if (playerTouch.phase == TouchPhase.Ended)
-            {
-                return;
+                case TouchPhase.Ended:
+                    gameObject.tag = "Untagged";
+                    break;
             }
         }
     }
