@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FollowTouch : MonoBehaviour {
+public class FollowTouch : MonoBehaviour
+{
 
     public float distance = 10;
 
@@ -9,7 +10,8 @@ public class FollowTouch : MonoBehaviour {
     float worldScreenWidth;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         worldScreenHeight = Camera.main.orthographicSize * 2;
         worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
     }
@@ -21,6 +23,7 @@ public class FollowTouch : MonoBehaviour {
 #if UNITY_ANDROID && !UNITY_EDITOR
         if(Input.touchCount > 0)
         {
+            EnableCollision();
             Touch myTouch = Input.GetTouch(0);
             if(myTouch.deltaPosition.x < 5 || myTouch.deltaPosition.y < 5) {
                 DisableCollision();        
@@ -40,7 +43,7 @@ public class FollowTouch : MonoBehaviour {
 
         // for mouse
 #if UNITY_EDITOR
-        if(Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0))
         {
             DisableCollision();
         }
@@ -57,7 +60,8 @@ public class FollowTouch : MonoBehaviour {
 #endif
     }
 
-    void DisableCollision() {
+    void DisableCollision()
+    {
         gameObject.GetComponentInChildren<Collider2D>().enabled = false;
     }
 

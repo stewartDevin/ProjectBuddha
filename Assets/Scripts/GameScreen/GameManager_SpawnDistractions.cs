@@ -7,7 +7,7 @@ public class GameManager_SpawnDistractions : MonoBehaviour {
 
     float spawnTimer = 3.0f;
 
-    float spawnRate = 3.0f;
+    float spawnRate = 2.0f;
 
     Vector3 spawnPosition = Vector3.zero;
 
@@ -23,6 +23,10 @@ public class GameManager_SpawnDistractions : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (!runSpawner) return;
+
+        spawnRate -= 0.01f * Time.deltaTime;
+
+        spawnRate = Mathf.Clamp(spawnRate, 1f, 50.0f);
 
         spawnTimer += 1.0f * Time.deltaTime;
         if(spawnTimer >= spawnRate)
@@ -62,7 +66,6 @@ public class GameManager_SpawnDistractions : MonoBehaviour {
 
                 spawnPosition.y = Random.Range(-worldScreenHeight * 0.3f, worldScreenHeight * 0.6f);
             }
-
 
             //Debug.Log("height " + worldScreenHeight + ", " + "width " + worldScreenWidth);
             //Debug.Log(randY);
