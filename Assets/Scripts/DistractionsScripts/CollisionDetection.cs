@@ -14,9 +14,22 @@ public class CollisionDetection : MonoBehaviour {
 	}
 
     void OnTriggerEnter2D(Collider2D other) {
-        if(other.tag == "Touch")
-        {
-            Destroy(gameObject);           
+        //if(other.tag == "Touch")
+        //{
+        //    Destroy(gameObject);           
+        //}
+
+        switch (other.transform.parent.tag) {
+            case "Tap":
+                if (gameObject.tag == "Projectile")
+                    Destroy(gameObject);
+                break;
+            case "Swipe":
+                if (gameObject.tag == "Sound")
+                    Destroy(gameObject);
+                break;
+            default:
+                break;
         }
             
     }
